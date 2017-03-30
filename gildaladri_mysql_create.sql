@@ -13,7 +13,7 @@ CREATE TABLE `categoria` (
 	`codice` varchar(50) NOT NULL UNIQUE,
 	`titolo` varchar(50) NOT NULL,
 	`descrizione` varchar(255) NOT NULL,
-	`immagine` varchar(255),
+	`immagine` blob,
 	PRIMARY KEY (`id`)
 );
 
