@@ -1,0 +1,19 @@
+{
+  "name": "extremelot-gildaladri-mercato",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ITGuy9401/extremelot-gildaladri-mercato.git"
+  },
+  "author": "Arcangelo Vicedomini",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ITGuy9401/extremelot-gildaladri-mercato/issues"
+  },
+  "homepage": "https://github.com/ITGuy9401/extremelot-gildaladri-mercato#readme"
+}
