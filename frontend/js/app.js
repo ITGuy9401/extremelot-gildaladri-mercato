@@ -13,5 +13,4 @@ angular.module('mercatino', ['ngRoute', 'ui.bootstrap']).config(function($routeP
 
 }).controller('menuCtrl', function($scope) {
 	var vm = this;
-}); = this;
 });
