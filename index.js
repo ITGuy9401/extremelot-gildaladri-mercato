@@ -80,5 +80,5 @@ app.get('*', function(req, res) {
 });
 
 app.listen(Config.get('PORT'), function() {
-	console.log('GILDALADRI-MARKET LISTENING ON PORT ' + Config.get('PORT') + '\nTELL ME I\'M PRETTY');
+	console.log('GILDALADRI-MARKET LISTENING ON PORT ' + Config.get('PORT'));
 });
