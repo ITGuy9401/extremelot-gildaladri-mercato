@@ -1,7 +1,8 @@
 (function(require, exports) {
 	'use strict';
 
-	var Sequelize = require('sequelize');
+	const Utils = require('./utils.js');
+	const Sequelize = require('sequelize');
 	var connection = new Sequelize('extremelot_ladri', 'extremelot_ladri', null, { //FIXME rendere la configurazione variabile
 		host: 'localhost',
 		dialect: 'mysql',
@@ -131,6 +132,12 @@
 		},
 		password: {
 			type: Sequelize.STRING
+		}
+	} {
+		setterMethods: {
+			password: function(value) {
+				this.setDataValue('password', Utils.passwordChipher(value));
+			}
 		}
 	});
 

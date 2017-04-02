@@ -2,6 +2,7 @@ const database = require('./database.js').database;
 const express = require('express');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const Utils = require('./utils.js');
 
 const app = express();
 
@@ -18,7 +19,7 @@ passport.use(new LocalStrategy(
 					message: 'Incorrect username.'
 				});
 			}
-			if (!user.validPassword(password)) {
+			if (!Utils.validPassword(user, password)) {
 				return done(null, false, {
 					message: 'Incorrect password.'
 				});
