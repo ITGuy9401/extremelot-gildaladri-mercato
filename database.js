@@ -86,22 +86,22 @@
 	});
 
 	mapping.Prodotto.hasMany(mapping.ProdottoCategoria, {
-		as: 'Categorie',
+		as: 'categorie',
 		foreignKey: 'id_prodotto'
 	});
 
 	mapping.ProdottoCategoria.belongsTo(mapping.Prodotto, {
-		as: 'Prodotto',
+		as: 'prodotto',
 		foreignKey: 'id_prodotto'
 	});
 
 	mapping.Categoria.hasMany(mapping.ProdottoCategoria, {
-		as: 'Prodotti',
+		as: 'prodotti',
 		foreignKey: 'id_categoria'
 	});
 
 	mapping.ProdottoCategoria.belongsTo(mapping.Categoria, {
-		as: 'Categoria',
+		as: 'categoria',
 		foreignKey: 'id_categoria'
 	});
 

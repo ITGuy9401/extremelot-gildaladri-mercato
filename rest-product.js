@@ -24,4 +24,23 @@ exports.main = (app, database) => {
 			res.json(prodotto);
 		});
 	});
-}
+	app.put('/products/:productId/assign/:categoryId', function(req, res) {
+		database.mapping.Prodotto.findById(req.params.productId).then((prodotto) => {
+			database.mapping.Categoria.findById(req.params.categoryId).then((categoria) => {
+				database.mapping.ProdottoCategoria.create({
+					categoria: categoria,
+					prodotto: prodotto
+				}).then((prodCat) => {
+					res.json(prodCat);
+				});
+			});
+		});
+	});
+	app.delete('/products/:productId', function(req, res) {
+		database.mapping.Prodotto.findById(req.params.productId).then((prodotto) => {
+			prodotto.destroy().then(() => {
+				return res.status(200).send('DELETED');
+			});
+		});
+	});
+};
