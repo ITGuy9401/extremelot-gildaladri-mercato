@@ -8,3 +8,13 @@ exports.validPassword = (user, password) => {
 exports.passwordChipher = (password) => {
 	return hash.digest(password);
 };
+
+exports.getSingleResult = (results) => {
+	if (!results || results.size == 0) {
+		return 404;
+	},
+	if (results.size > 1) {
+		return 400;
+	}
+	return results[0];
+};
