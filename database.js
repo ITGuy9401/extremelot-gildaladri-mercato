@@ -24,15 +24,36 @@
 	mapping.prodotto = connection.define('prodotto', {
 		id: {
 			type: Sequelize.INTEGER,
+			primaryKey: true,
 			autoIncrement: true
 		},
-		firstName: {
+		codice: {
 			type: Sequelize.STRING,
-			field: 'first_name' // Will result in an attribute that is firstName when user facing but first_name in the database
+			allowNull: false,
+			unique: true
 		},
-		lastName: {
+		titolo: {
 			type: Sequelize.STRING
+			allowNull: false
+		},
+		descrizione: {
+			type: Sequelize.STRING
+			allowNull: false
+		},
+		costo: {
+			type: Sequelize.DECIMAL
+			allowNull: false
+		},
+		immagine: {
+			type: Sequelize.BLOB
+			allowNull: false
 		}
 	});
 
+	connection.sync();
+
+	exports.database = {
+		"mapping": mapping,
+		"connection": connection
+	};
 })(require, exports);
