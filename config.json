@@ -1,0 +1,13 @@
+{
+	"env": "development",
+	"http": {
+		"port": 4242
+	},
+	"database": {
+		"address": "localhost",
+		"port": "1200",
+		"username": "username",
+		"password": "password",
+		"dbname": "database"
+	}
+}

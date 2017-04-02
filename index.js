@@ -5,10 +5,10 @@ const bodyParser = require('body-parser'); // pull information from HTML POST (e
 const methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 const fileUpload = require('express-fileupload');
 
-
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const Utils = require('./utils.js');
+const Config = require('./config.js').nconf;
 
 const app = express();
 
@@ -47,7 +47,7 @@ app.use(bodyParser.json()); // parse application/json
 app.use(methodOverride());
 app.use(fileUpload());
 
-app.set('env', 'development'); //FIXME parameter
+app.set('env', Config.get('env'));
 
 // error handler
 // no stacktraces leaked to user unless in development environment
@@ -74,6 +74,6 @@ app.post('/login',
 
 require('./rest-product.js').main(app, database);
 
-app.listen(4242, function() { // FIXME rendere variabile la porta
-	console.log('GILDALADRI-MARKET LISTENING ON PORT 4242\nTELL ME I\'M PRETTY');
+app.listen(Config.get('http:port'), function() {
+	console.log('GILDALADRI-MARKET LISTENING ON PORT ' + Config.get('http:port') + '\nTELL ME I\'M PRETTY');
 });
