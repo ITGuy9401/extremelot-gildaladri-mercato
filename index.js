@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan'); // log requests to the console (express4)
 const bodyParser = require('body-parser'); // pull information from HTML POST (express4)
 const methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
+const fileUpload = require('express-fileupload');
 
 
 const passport = require('passport');
@@ -44,6 +45,8 @@ app.use(bodyParser.urlencoded({
 })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
 app.use(methodOverride());
+app.use(fileUpload());
+
 app.get('*', function(req, res) {
 	res.sendfile('./frontend/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });
