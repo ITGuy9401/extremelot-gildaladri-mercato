@@ -4,6 +4,9 @@
 	const Utils = require('./utils.js');
 	const Sequelize = require('sequelize');
 	const Config = require('./config.js').nconf;
+	console.log(Config);
+	console.log(Config.get("JAWSDB_URL"));
+
 	var connection = new Sequelize(Config.get('database:dbname'), Config.get('database:username'), Config.get('database:password'), {
 		host: Config.get('database:host'),
 		dialect: Config.get('database:dialect'),
