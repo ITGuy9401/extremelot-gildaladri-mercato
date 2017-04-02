@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/ITGuy9401/extremelot-gildaladri-mercato#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
+    "method-override": "^2.3.8",
+    "morgan": "^1.8.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0"
   }

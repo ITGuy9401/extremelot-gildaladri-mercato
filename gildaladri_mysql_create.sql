@@ -28,6 +28,7 @@ CREATE TABLE `utente` (
 	`id` INT NOT NULL,
 	`lotname` varchar(10) NOT NULL UNIQUE,
 	`username` varchar(50) NOT NULL UNIQUE,
+	`username` varchar(255) NOT NULL UNIQUE,
 	`password` varchar(50) NOT NULL,
 	PRIMARY KEY (`id`)
 );
@@ -48,4 +49,3 @@ ALTER TABLE `prodotto_categoria` ADD CONSTRAINT `prodotto_categoria_fk1` FOREIGN
 ALTER TABLE `acquisto` ADD CONSTRAINT `acquisto_fk0` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotto`(`id`);
 
 ALTER TABLE `acquisto` ADD CONSTRAINT `acquisto_fk1` FOREIGN KEY (`id_utente`) REFERENCES `utente`(`id`);
-

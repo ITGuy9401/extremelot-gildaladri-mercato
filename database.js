@@ -13,13 +13,13 @@
 			idle: 10000
 		}
 	});
-	connection.authenticate().complete(function(err) {
+	/*connection.authenticate().complete(function(err) {
 		if (err) {
 			console.error('Unable to connect to the database:', err);
 		} else {
 			console.debug('Connection has been established successfully.');
 		}
-	});
+	});*/
 
 	var mapping = {};
 	mapping.Prodotto = connection.define('prodotto', {
@@ -34,19 +34,19 @@
 			unique: true
 		},
 		titolo: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING,
 			allowNull: false
 		},
 		descrizione: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING,
 			allowNull: false
 		},
 		costo: {
-			type: Sequelize.DECIMAL
+			type: Sequelize.DECIMAL,
 			allowNull: false
 		},
 		immagine: {
-			type: Sequelize.BLOB
+			type: Sequelize.BLOB,
 			allowNull: false
 		}
 	});
@@ -71,15 +71,15 @@
 			unique: true
 		},
 		titolo: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING,
 			allowNull: false
 		},
 		descrizione: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING,
 			allowNull: false
 		},
 		immagine: {
-			type: Sequelize.BLOB
+			type: Sequelize.BLOB,
 			allowNull: false
 		}
 	});
@@ -111,7 +111,8 @@
 			autoIncrement: true
 		},
 		dataAcquisto: {
-			type: Sequelize.DATE
+			type: Sequelize.DATE,
+			allowNull: false
 		},
 		dataConsegna: {
 			type: Sequelize.DATE
@@ -125,15 +126,25 @@
 			autoIncrement: true
 		},
 		lotname: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING,
+			unique: true,
+			allowNull: false
 		},
 		username: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING,
+			unique: true,
+			allowNull: false
+		},
+		email: {
+			type: Sequelize.STRING,
+			unique: true,
+			allowNull: false
 		},
 		password: {
-			type: Sequelize.STRING
+			type: Sequelize.STRING,
+			allowNull: false
 		}
-	} {
+	}, {
 		setterMethods: {
 			password: function(value) {
 				this.setDataValue('password', Utils.passwordChipher(value));
