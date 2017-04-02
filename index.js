@@ -73,7 +73,8 @@ app.post('/login',
 	})
 );
 
-require('./rest-product.js').main(app, database);
+require('./rest-products.js').main(app, database);
+require('./rest-categories.js').main(app, database);
 
 app.get('*', function(req, res) {
 	res.sendfile('./frontend/index.html'); // load the single view file (angular will handle the page changes on the front-end)

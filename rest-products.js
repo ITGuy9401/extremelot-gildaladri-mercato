@@ -1,10 +1,10 @@
 exports.main = (app, database) => {
-	app.get('/products', function(req, res) {
+	app.get('/api//products', function(req, res) {
 		database.mapping.Prodotto.findAll().then((prodotti) => {
 			res.json(prodotti);
 		});
 	});
-	app.post('/products', function(req, res) {
+	app.post('/api//products', function(req, res) {
 		if (!req.files)
 			return res.status(400).send('Non è stata selezionata l\'immagine.');
 
@@ -19,12 +19,12 @@ exports.main = (app, database) => {
 			res.json(prodotto);
 		});
 	});
-	app.get('/products/:productId', function(req, res) {
+	app.get('/api//products/:productId', function(req, res) {
 		database.mapping.Prodotto.findById(req.params.productId).then((prodotto) => {
 			res.json(prodotto);
 		});
 	});
-	app.put('/products/:productId/assign/:categoryId', function(req, res) {
+	app.put('/api//products/:productId/assign/:categoryId', function(req, res) {
 		database.mapping.Prodotto.findById(req.params.productId).then((prodotto) => {
 			database.mapping.Categoria.findById(req.params.categoryId).then((categoria) => {
 				database.mapping.ProdottoCategoria.create({
@@ -36,7 +36,7 @@ exports.main = (app, database) => {
 			});
 		});
 	});
-	app.delete('/products/:productId', function(req, res) {
+	app.delete('/api//products/:productId', function(req, res) {
 		database.mapping.Prodotto.findById(req.params.productId).then((prodotto) => {
 			prodotto.destroy().then(() => {
 				return res.status(200).send('DELETED');
