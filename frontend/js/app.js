@@ -11,6 +11,7 @@ angular.module('mercatino', ['ngRoute', 'ui.bootstrap']).config(function($routeP
 		redirectTo: '/mercatino'
 	});
 
+	$locationProvider.html5Mode(true);
 }).controller('menuCtrl', function($scope) {
 	var vm = this;
 });
