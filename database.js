@@ -3,14 +3,15 @@
 
 	const Utils = require('./utils.js');
 	const Sequelize = require('sequelize');
-	var connection = new Sequelize('extremelot_ladri', 'extremelot_ladri', null, { //FIXME rendere la configurazione variabile
-		host: 'localhost',
-		dialect: 'mysql',
+	const Config = require('./config.js').nconf;
+	var connection = new Sequelize(Config.get('database:dbname'), Config.get('database:username'), Config.get('database:password'), {
+		host: Config.get('database:host'),
+		dialect: Config.get('database:dialect'),
 
 		pool: {
-			max: 5,
-			min: 0,
-			idle: 10000
+			max: Config.get('database:pool:max'),
+			min: Config.get('database:pool:min'),
+			idle: Config.get('database:pool:idle')
 		}
 	});
 	/*connection.authenticate().complete(function(err) {
