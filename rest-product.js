@@ -1,7 +1,7 @@
 exports.main = (app, database) => {
 	app.get('/products', function(req, res) {
 		database.mapping.Prodotto.findAll().then((prodotti) => {
-			res.render('result', prodotti);
+			res.json(prodotti);
 		});
 	});
 	app.post('/products', function(req, res) {
@@ -16,12 +16,12 @@ exports.main = (app, database) => {
 			costo: req.body.costo,
 			immagine: immagine
 		}).then((prodotto) => {
-			res.render('result', prodotto);
+			res.json(prodotto);
 		});
 	});
 	app.get('/products/:productId', function(req, res) {
 		database.mapping.Prodotto.findById(req.params.productId).then((prodotto) => {
-			res.render('result', prodotto);
+			res.json(prodotto);
 		});
 	});
 }

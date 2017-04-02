@@ -53,9 +53,11 @@ app.set('env', Config.get('ENV'));
 // no stacktraces leaked to user unless in development environment
 app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
-	res.render('error', {
-		message: err.message,
-		error: (app.get('ENV') === 'development') ? err : {}
+	res.json({
+		'error': {
+			message: err.message,
+			error: (app.get('ENV') === 'development') ? err : {}
+		}
 	});
 });
 
