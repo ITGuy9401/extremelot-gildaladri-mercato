@@ -9,7 +9,7 @@ angular.module('mercatino', ['ngRoute', 'ui.bootstrap']).config(function($routeP
 		templateUrl: 'views/admin.html'
 	}).otherwise({
 		redirectTo: '/mercatino'
-	});;
+	});
 
 }).controller('menuCtrl', function($scope) {
 	var vm = this;
