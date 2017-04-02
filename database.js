@@ -83,6 +83,38 @@
 		}
 	});
 
+	mapping.acquisto = connection.define('acquisto', {
+		id: {
+			type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		dataAcquisto: {
+			type: Sequelize.DATE
+		},
+		dataConsegna: {
+			type: Sequelize.DATE
+		}
+	});
+
+	mapping.utente = connection.define('utente', {
+		id: {
+			type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		lotname: {
+			type: Sequelize.STRING
+		},
+		username: {
+			type: Sequelize.STRING
+		},
+		password: {
+			type: Sequelize.STRING
+		}
+	});
+
+
 	connection.sync();
 
 	exports.database = {
