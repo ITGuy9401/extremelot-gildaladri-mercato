@@ -74,6 +74,6 @@ app.post('/login',
 
 require('./rest-product.js').main(app, database);
 
-app.listen(Config.get('APP_PORT'), function() {
-	console.log('GILDALADRI-MARKET LISTENING ON PORT ' + Config.get('APP_PORT') + '\nTELL ME I\'M PRETTY');
+app.listen(Config.get('PORT'), function() {
+	console.log('GILDALADRI-MARKET LISTENING ON PORT ' + Config.get('PORT') + '\nTELL ME I\'M PRETTY');
 });
