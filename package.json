@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/ITGuy9401/extremelot-gildaladri-mercato/issues"
   },
-  "homepage": "https://github.com/ITGuy9401/extremelot-gildaladri-mercato#readme"
+  "homepage": "https://github.com/ITGuy9401/extremelot-gildaladri-mercato#readme",
+  "dependencies": {
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  }
 }
