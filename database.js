@@ -2,7 +2,7 @@
 	'use strict';
 
 	var Sequelize = require('sequelize');
-	var connection = new Sequelize('extremelot_ladri', 'extremelot_ladri', null, {
+	var connection = new Sequelize('extremelot_ladri', 'extremelot_ladri', null, { //FIXME rendere la configurazione variabile
 		host: 'localhost',
 		dialect: 'mysql',
 
@@ -42,6 +42,39 @@
 		},
 		costo: {
 			type: Sequelize.DECIMAL
+			allowNull: false
+		},
+		immagine: {
+			type: Sequelize.BLOB
+			allowNull: false
+		}
+	});
+
+	mapping.prodottoCategoria = connection.define('prodotto_categoria', {
+		id: {
+			type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		}
+	});
+
+	mapping.categoria = connection.define('categoria', {
+		id: {
+			type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		codice: {
+			type: Sequelize.STRING,
+			allowNull: false,
+			unique: true
+		},
+		titolo: {
+			type: Sequelize.STRING
+			allowNull: false
+		},
+		descrizione: {
+			type: Sequelize.STRING
 			allowNull: false
 		},
 		immagine: {
