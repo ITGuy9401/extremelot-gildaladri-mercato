@@ -59,10 +59,6 @@ app.use(function(err, req, res, next) {
 	});
 });
 
-app.get('*', function(req, res) {
-	res.sendfile('./frontend/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-});
-
 app.get('/market', (req, res) => {
 	res.sendfile('./frontend/market.html');
 });
@@ -75,8 +71,11 @@ app.post('/login',
 	})
 );
 
-
 require('./rest-product.js').main(app, database);
+
+app.get('*', function(req, res) {
+	res.sendfile('./frontend/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+});
 
 app.listen(Config.get('PORT'), function() {
 	console.log('GILDALADRI-MARKET LISTENING ON PORT ' + Config.get('PORT') + '\nTELL ME I\'M PRETTY');
