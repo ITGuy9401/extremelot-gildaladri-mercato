@@ -47,7 +47,7 @@ app.use(bodyParser.json()); // parse application/json
 app.use(methodOverride());
 app.use(fileUpload());
 
-app.set('env', Config.get('env'));
+app.set('env', Config.get('ENV'));
 
 // error handler
 // no stacktraces leaked to user unless in development environment
@@ -55,7 +55,7 @@ app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
 	res.render('error', {
 		message: err.message,
-		error: (app.get('env') === 'development') ? err : {}
+		error: (app.get('ENV') === 'development') ? err : {}
 	});
 });
 
@@ -74,6 +74,6 @@ app.post('/login',
 
 require('./rest-product.js').main(app, database);
 
-app.listen(Config.get('http:port'), function() {
-	console.log('GILDALADRI-MARKET LISTENING ON PORT ' + Config.get('http:port') + '\nTELL ME I\'M PRETTY');
+app.listen(Config.get('APP_PORT'), function() {
+	console.log('GILDALADRI-MARKET LISTENING ON PORT ' + Config.get('APP_PORT') + '\nTELL ME I\'M PRETTY');
 });

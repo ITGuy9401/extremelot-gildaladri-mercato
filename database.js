@@ -5,16 +5,15 @@
 	const Sequelize = require('sequelize');
 	const Config = require('./config.js').nconf;
 	console.log(Config);
-	console.log(Config.get("JAWSDB_URL"));
+	console.log();
 
-	var connection = new Sequelize(Config.get('database:dbname'), Config.get('database:username'), Config.get('database:password'), {
-		host: Config.get('database:host'),
-		dialect: Config.get('database:dialect'),
+	var connection = new Sequelize(Config.get("JAWSDB_URL"), {
+		dialect: Config.get('JAWSDB_DIALECT'),
 
 		pool: {
-			max: Config.get('database:pool:max'),
-			min: Config.get('database:pool:min'),
-			idle: Config.get('database:pool:idle')
+			max: Config.get('JAWSDB_POOL_MAX'),
+			min: Config.get('JAWSDB_POOL_MIN'),
+			idle: Config.get('JAWSDB_POOL_IDLE')
 		}
 	});
 	/*connection.authenticate().complete(function(err) {
