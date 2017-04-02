@@ -21,7 +21,7 @@
 	});
 
 	var mapping = {};
-	mapping.prodotto = connection.define('prodotto', {
+	mapping.Prodotto = connection.define('prodotto', {
 		id: {
 			type: Sequelize.INTEGER,
 			primaryKey: true,
@@ -50,7 +50,7 @@
 		}
 	});
 
-	mapping.prodottoCategoria = connection.define('prodotto_categoria', {
+	mapping.ProdottoCategoria = connection.define('prodotto_categoria', {
 		id: {
 			type: Sequelize.INTEGER,
 			primaryKey: true,
@@ -58,7 +58,7 @@
 		}
 	});
 
-	mapping.categoria = connection.define('categoria', {
+	mapping.Categoria = connection.define('categoria', {
 		id: {
 			type: Sequelize.INTEGER,
 			primaryKey: true,
@@ -83,7 +83,27 @@
 		}
 	});
 
-	mapping.acquisto = connection.define('acquisto', {
+	mapping.Prodotto.hasMany(mapping.ProdottoCategoria, {
+		as: 'Categorie',
+		foreignKey: 'id_prodotto'
+	});
+
+	mapping.ProdottoCategoria.belongsTo(mapping.Prodotto, {
+		as: 'Prodotto',
+		foreignKey: 'id_prodotto'
+	});
+
+	mapping.Categoria.hasMany(mapping.ProdottoCategoria, {
+		as: 'Prodotti',
+		foreignKey: 'id_categoria'
+	});
+
+	mapping.ProdottoCategoria.belongsTo(mapping.Categoria, {
+		as: 'Categoria',
+		foreignKey: 'id_categoria'
+	});
+
+	mapping.Acquisto = connection.define('acquisto', {
 		id: {
 			type: Sequelize.INTEGER,
 			primaryKey: true,
@@ -97,7 +117,7 @@
 		}
 	});
 
-	mapping.utente = connection.define('utente', {
+	mapping.Utente = connection.define('utente', {
 		id: {
 			type: Sequelize.INTEGER,
 			primaryKey: true,
@@ -114,6 +134,25 @@
 		}
 	});
 
+	mapping.Prodotto.hasMany(mapping.Acquisto, {
+		as: 'Acquisti',
+		foreignKey: 'id_prodotto'
+	});
+
+	mapping.Acquisto.belongsTo(mapping.Prodotto, {
+		as: 'Prodotto',
+		foreignKey: 'id_prodotto'
+	});
+
+	mapping.Utente.hasMany(mapping.Acquisto, {
+		as: 'Acquisti',
+		foreignKey: 'id_utente'
+	});
+
+	mapping.Acquisto.belongsTo(mapping.Utente, {
+		as: 'Utente',
+		foreignKey: 'id_utente'
+	});
 
 	connection.sync();
 
