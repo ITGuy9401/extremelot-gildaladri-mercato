@@ -4,8 +4,6 @@
 	const Utils = require('./utils.js');
 	const Sequelize = require('sequelize');
 	const Config = require('./config.js').nconf;
-	console.log(Config);
-	console.log();
 
 	var connection = new Sequelize(Config.get("JAWSDB_URL"), {
 		dialect: Config.get('JAWSDB_DIALECT'),
