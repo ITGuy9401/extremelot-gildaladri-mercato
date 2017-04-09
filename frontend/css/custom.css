@@ -1,7 +1,14 @@
 .simpleText {
-	font-family: "Roboto", sans-serif;
+	font-family: "Macondo", sans-serif;
 	font-size: 14px;
 }
+
+.productImage {
+	border: 1px solid rgb(34,34,34);
+	border-radius: 50%;
+	background-color: white;
+}
+
 .cssload-loader {
 	position: relative;
 	left: calc(50% - 31px);
