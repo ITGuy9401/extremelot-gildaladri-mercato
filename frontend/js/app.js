@@ -4,7 +4,9 @@ angular.module('mercatino', ['ngRoute', 'ui.bootstrap']).config(function($routeP
 	}).when('/regolamento', {
 		templateUrl: 'views/regolamento.html'
 	}).when('/prodotti', {
-		templateUrl: 'views/prodotti.html'
+		templateUrl: 'views/prodotti.html',
+		controller: 'productsCtrl',
+		controllerAs: 'vm'
 	}).when('/admin', {
 		templateUrl: 'views/admin.html'
 	}).otherwise({
