@@ -1,4 +1,4 @@
-angular.module('mercatino').controller('productsCtrl', ['$http', function($http) {
+angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', function($http, $scope) {
 	var vm = this;
 	vm.getListProducts = getListProducts;
 	vm.getListCategories = getListCategories;
@@ -8,6 +8,8 @@ angular.module('mercatino').controller('productsCtrl', ['$http', function($http)
 		form: {},
 		data: {}
 	}
+
+	vm.dataLoaded = false;
 
 	function elaboraFiltro() {
 		let categoria = vm.filter.form.categoria;
@@ -47,4 +49,9 @@ angular.module('mercatino').controller('productsCtrl', ['$http', function($http)
 	}
 	getListProducts();
 	getListCategories();
-}]);
+	$scope.$watch(() => {
+		return [vm.categorie, vm.prodotti]
+	}, (newValue) => {
+		vm.dataLoaded = newValue[0] && newValue[1];
+	}, true);
+}]);;
