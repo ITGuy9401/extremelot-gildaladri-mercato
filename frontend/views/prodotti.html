@@ -38,10 +38,10 @@
 				<div class="row panel-heading">{{prodotto.titolo}}</div>
 				<div class="panel-body">
 					<div class="col-xs-12 text-center">
-						<img ng-src="'data:image/png;base64,' + prodotto.immagine" class="productImage"/>
+						<img ng-src="data:image/png;base64,{{prodotto.immagine}}" class="productImage"/>
 					</div>
 					<div class="col-xs-12 simpleText text-center">
-						{{prodotto.descrizione}}
+						{{prodotto.descrizione}} {{prodotto.immagine}}
 					</div>
 				</div>
 			</div>

@@ -3,9 +3,11 @@ const Utils = require('./utils.js');
 exports.main = (app, database) => {
 	app.get('/api/products', function(req, res) {
 		database.mapping.Prodotto.findAll().then((prodotti) => {
+			//console.log(JSON.stringify(prodotti));
 			for (var i = 0; i < prodotti.length; i++) {
 				Utils.bufferToBase64(prodotti[i], 'immagine');
 			}
+			//console.log(JSON.stringify(prodotti));
 			res.json(prodotti);
 		});
 	});

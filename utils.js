@@ -19,6 +19,8 @@ exports.getSingleResult = (results) => {
 };
 
 exports.bufferToBase64 = (obj, prop) => {
-	if (obj && obj[prop])
-		obj[prop] = obj[prop].toString('base64');
+	if (obj && obj[prop]) {
+		let buf = obj[prop];
+		obj[prop] = buf.toString('base64');
+	}
 }

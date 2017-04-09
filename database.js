@@ -47,7 +47,7 @@
 			allowNull: false
 		},
 		immagine: {
-			type: Sequelize.BLOB,
+			type: Sequelize.BLOB('long'),
 			allowNull: false
 		}
 	});
@@ -80,7 +80,7 @@
 			allowNull: false
 		},
 		immagine: {
-			type: Sequelize.BLOB,
+			type: Sequelize.BLOB('long'),
 			allowNull: false
 		}
 	});
