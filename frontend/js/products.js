@@ -42,13 +42,7 @@ angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', '$tim
 	}
 
 	function getBase64Image(image) {
-		var base64data = null;
-		var reader = new FileReader();
-		reader.readAsDataURL(image);
-		reader.onloadend = () => {
-			base64data = reader.result;
-			image.src = 'data:image/png;base64,' + base64data;
-		}
+		image.src = 'data:image/png;base64,' + image.data.toString("base64");
 	}
 
 	function getListCategories() {
