@@ -2,6 +2,25 @@ angular.module('mercatino').controller('productsCtrl', ['$http', function($http)
 	var vm = this;
 	vm.getListProducts = getListProducts;
 	vm.getListCategories = getListCategories;
+	vm.elaboraFiltro = elaboraFiltro;
+
+	vm.filter = {
+		form: {},
+		data: {}
+	}
+
+	function elaboraFiltro() {
+		let categoria = vm.filter.form.categoria;
+		let titolo = vm.filter.form.titolo;
+		if (categoria && categoria.length == 0) {
+			categoria = undefined;
+		}
+		if (titolo && titolo.length == 0) {
+			titolo = undefined;
+		}
+		vm.filter.data.categoria = categoria;
+		vm.filter.data.titolo = titolo;
+	}
 
 	function getListProducts() {
 		$http({

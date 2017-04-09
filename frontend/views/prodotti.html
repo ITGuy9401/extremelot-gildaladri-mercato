@@ -1,13 +1,27 @@
-<div class="panel panel-default">
-	<div class="panel-heading">Ricerca</div>
-	<div class="panel-body">
-		<form class="form-inline col-xs-12">
-			<div class="form-group">
-				<label for="categoria">Categoria</label>
-				<select ng-model="vm.categoriaFilter" class="form-control" id="categoria" placeholder="Seleziona una categoria">
-					<option value="categoria.codice" ng-repeat="categoria in vm.categorie">{{categoria.titolo}}</option>
-				</select>
-			</div>
-		</form>
+<div class="container-fluid">
+	<div class="panel panel-default col-xs-12">
+		<div class="panel-heading">Ricerca</div>
+		<div class="panel-body">
+			<form class="form-inline col-xs-12">
+				<div class="form-group col-xs-12 col-sm-6">
+					<label for="categoria">Categoria</label>
+					<select ng-model="vm.filter.form.categoria" ng-change="elaboraFiltro()" class="form-control" id="categoria" placeholder="Seleziona una categoria">
+						<option value=""></option>
+						<option value="categoria.codice" ng-repeat="categoria in vm.categorie">{{categoria.titolo}}</option>
+					</select>
+				</div>
+				<div class="form-group col-xs-12 col-sm-6">
+					<label for="categoria">Titolo</label>
+					<select ng-model="vm.filter.form.titolo" ng-change="elaboraFiltro()" class="form-control" id="categoria" placeholder="Seleziona una categoria">
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="panel panel-default col-xs-12">
+		<div class="panel-heading">Prodotti</div>
+		<div class="panel-body">
+		
+		</div>
 	</div>
 </div>
