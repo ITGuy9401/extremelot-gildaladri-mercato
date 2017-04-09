@@ -26,4 +26,6 @@ angular.module('mercatino').controller('productsCtrl', ['$http', function($http)
 			console.error("Errore nel recuperare l'elenco delle categorie. Ricaricare la pagina.", response);
 		});
 	}
+	getListProducts();
+	getListCategories();
 }]);
