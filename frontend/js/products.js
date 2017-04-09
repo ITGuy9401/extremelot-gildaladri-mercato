@@ -1,4 +1,4 @@
-angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', function($http, $scope) {
+angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', '$timeout', function($http, $scope, $timeout) {
 	var vm = this;
 	vm.getListProducts = getListProducts;
 	vm.getListCategories = getListCategories;
@@ -29,7 +29,7 @@ angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', funct
 			method: 'GET',
 			url: '/api/products'
 		}).then((response) => {
-			setTimeout(() => {
+			$timeout(() => {
 				vm.prodotti = response.data;
 			}, 500)
 		}, (response) => {
@@ -43,7 +43,7 @@ angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', funct
 			method: 'GET',
 			url: '/api/categories'
 		}).then((response) => {
-			setTimeout(() => {
+			$timeout(() => {
 				vm.categorie = response.data;
 			}, 500)
 		}, (response) => {
