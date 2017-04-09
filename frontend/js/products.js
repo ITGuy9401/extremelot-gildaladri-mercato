@@ -47,7 +47,7 @@ angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', '$tim
 		});
 		var base64data = null;
 		var reader = new FileReader();
-		reader.readAsDataURL(blob);
+		reader.readAsDataURL(image);
 		reader.onloadend = () => {
 			base64data = reader.result;
 			image.src = 'data:image/png;base64,' + base64data;
