@@ -29,7 +29,9 @@ angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', funct
 			method: 'GET',
 			url: '/api/products'
 		}).then((response) => {
-			vm.prodotti = response.data;
+			setTimeout(() => {
+				vm.prodotti = response.data;
+			}, 500)
 		}, (response) => {
 			alert.show("Errore nel recuperare l'elenco dei prodotti. Ricaricare la pagina.");
 			console.error("Errore nel recuperare l'elenco dei prodotti. Ricaricare la pagina.", response);
@@ -41,7 +43,9 @@ angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', funct
 			method: 'GET',
 			url: '/api/categories'
 		}).then((response) => {
-			vm.categorie = response.data;
+			setTimeout(() => {
+				vm.categorie = response.data;
+			}, 500)
 		}, (response) => {
 			alert.show("Errore nel recuperare l'elenco delle categorie. Ricaricare la pagina.");
 			console.error("Errore nel recuperare l'elenco delle categorie. Ricaricare la pagina.", response);
