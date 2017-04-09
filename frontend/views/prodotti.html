@@ -1,6 +1,9 @@
-<div class="container-fluid">
+<div ng-hide="vm.dataLoaded" class"container-fluid">
+
+</div>
+<div ng-show="vm.dataLoaded" class="container-fluid">
 	<div class="panel panel-default col-xs-12">
-		<div class="panel-heading">Ricerca</div>
+		<div class="row panel-heading">Ricerca</div>
 		<div class="panel-body">
 			<form class="form-inline col-xs-12">
 				<div class="form-group col-xs-12 col-sm-6">
@@ -12,16 +15,16 @@
 				</div>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="categoria">Titolo</label>
-					<select ng-model="vm.filter.form.titolo" ng-change="elaboraFiltro()" class="form-control" id="categoria" placeholder="Seleziona una categoria">
+					<input type="text" ng-model="vm.filter.form.titolo" ng-change="elaboraFiltro()" class="form-control" id="categoria" placeholder="Filtra per titolo">
 				</div>
 			</form>
 		</div>
 	</div>
 
 	<div class="panel panel-default col-xs-12">
-		<div class="panel-heading">Prodotti</div>
+		<div class="row panel-heading">Prodotti</div>
 		<div class="panel-body">
-		
+
 		</div>
 	</div>
 </div>
