@@ -3,7 +3,6 @@ angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', '$tim
 	vm.getListProducts = getListProducts;
 	vm.getListCategories = getListCategories;
 	vm.elaboraFiltro = elaboraFiltro;
-	vm.getBase64Image = getBase64Image;
 
 	vm.filter = {
 		form: {},
@@ -32,6 +31,9 @@ angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', '$tim
 		}).then((response) => {
 			$timeout(() => {
 				vm.prodotti = response.data;
+				for (let i = 0; i < vm.prodotti.length; i++) {
+					getBase64Image(vm.prodotti[i].immagine);
+				}
 			}, 500)
 		}, (response) => {
 			alert.show("Errore nel recuperare l'elenco dei prodotti. Ricaricare la pagina.");
@@ -48,8 +50,8 @@ angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', '$tim
 		reader.readAsDataURL(blob);
 		reader.onloadend = () => {
 			base64data = reader.result;
+			image.src = 'data:image/png;base64,' + base64data;
 		}
-		return 'data:image/png;base64,' + base64data;
 	}
 
 	function getListCategories() {

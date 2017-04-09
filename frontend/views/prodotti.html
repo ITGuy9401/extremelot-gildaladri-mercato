@@ -35,13 +35,13 @@
 		<div class="row panel-heading">Prodotti</div>
 		<div class="panel-body">
 			<div ng-repeat="prodotto in vm.prodotti" class="panel panel-primary col-xs-12 col-sm-6 col-md-4 col-lg-3">
-				<div class="panel-heading">{{prodotto.titolo}}</div>
+				<div class="row panel-heading">{{prodotto.titolo}}</div>
 				<div class="panel-body">
 					<div class="col-xs-12 text-center">
-						<img ng-src="vm.getBase64Image(prodotto.immagine)" class="productImage"/>
+						<img ng-src="prodotto.immagine.src" class="productImage"/>
 					</div>
 					<div class="row col-xs-12 simpleText text-center">
-						{{prodotto.descrizione}} {{vm.getBase64Image(prodotto.immagine)}}
+						{{prodotto.descrizione}} {{prodotto.immagine.src}}
 					</div>
 				</div>
 			</div>
