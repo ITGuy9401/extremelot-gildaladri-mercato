@@ -42,9 +42,6 @@ angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', '$tim
 	}
 
 	function getBase64Image(image) {
-		let blob = new Blob(image, {
-			type: 'image/png'
-		});
 		var base64data = null;
 		var reader = new FileReader();
 		reader.readAsDataURL(image);
