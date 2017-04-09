@@ -1,6 +1,11 @@
+const Utils = require('./utils.js');
+
 exports.main = (app, database) => {
 	app.get('/api/categories', function(req, res) {
 		database.mapping.Categoria.findAll().then((categorie) => {
+			for (var i = 0; i < categorie.length; i++) {
+				Utils.bufferToBase64(categorie[i], 'immagine');
+			}
 			res.json(categorie);
 		});
 	});
@@ -13,6 +18,7 @@ exports.main = (app, database) => {
 			descrizione: req.body.descrizione,
 			immagine: immagine
 		}).then((categoria) => {
+			Utils.bufferToBase64(categoria, 'immagine');
 			res.json(categoria);
 		});
 	});
@@ -31,6 +37,7 @@ exports.main = (app, database) => {
 					"error": "Più di una categoria trovata"
 				});
 			}
+			Utils.bufferToBase64(categoria, 'immagine');
 			res.json(categoria);
 		});
 	});

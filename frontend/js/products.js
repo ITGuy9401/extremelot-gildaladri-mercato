@@ -31,18 +31,11 @@ angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', '$tim
 		}).then((response) => {
 			$timeout(() => {
 				vm.prodotti = response.data;
-				for (let i = 0; i < vm.prodotti.length; i++) {
-					getBase64Image(vm.prodotti[i].immagine);
-				}
 			}, 500)
 		}, (response) => {
 			alert.show("Errore nel recuperare l'elenco dei prodotti. Ricaricare la pagina.");
 			console.error("Errore nel recuperare l'elenco dei prodotti. Ricaricare la pagina.", response);
 		});
-	}
-
-	function getBase64Image(image) {
-		image.src = 'data:image/png;base64,' + btoa(String.fromCharCode.apply(null, new Uint8Array(image.data)));
 	}
 
 	function getListCategories() {

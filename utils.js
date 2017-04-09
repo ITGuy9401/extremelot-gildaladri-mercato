@@ -17,3 +17,8 @@ exports.getSingleResult = (results) => {
 	}
 	return results[0];
 };
+
+exports.bufferToBase64 = (obj, prop) => {
+	if (obj && obj[prop])
+		obj[prop] = obj[prop].toString('base64');
+}

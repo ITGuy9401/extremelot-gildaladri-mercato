@@ -3,6 +3,9 @@ const Utils = require('./utils.js');
 exports.main = (app, database) => {
 	app.get('/api/products', function(req, res) {
 		database.mapping.Prodotto.findAll().then((prodotti) => {
+			for (var i = 0; i < prodotti.length; i++) {
+				Utils.bufferToBase64(prodotti[i], 'immagine');
+			}
 			res.json(prodotti);
 		});
 	});
@@ -18,6 +21,7 @@ exports.main = (app, database) => {
 			costo: req.body.costo,
 			immagine: immagine
 		}).then((prodotto) => {
+			Utils.bufferToBase64(prodotto, 'immagine');
 			res.json(prodotto);
 		});
 	});
@@ -37,6 +41,7 @@ exports.main = (app, database) => {
 					"error": "Più di un prodotto trovato"
 				});
 			} else {
+				Utils.bufferToBase64(prodotto, 'immagine');
 				res.json(prodotto);
 			}
 		});
