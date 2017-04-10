@@ -65,16 +65,16 @@ app.get('/market', (req, res) => {
 });
 
 app.post('/api/login',
-	passport.authenticate('local', {
-		successRedirect: '/market/#!/admin',
-		failureRedirect: '/market/#!/login',
-		failureFlash: true
+	passport.authenticate('local', (req, res) => {
+		// If this function gets called, authentication was successful.
+		// `req.user` contains the authenticated user.
+		res.json(req.user);
 	})
 );
 /* Handle Logout */
 app.get('/api/logout', function(req, res) {
 	req.logout();
-	res.redirect('/');
+	return res.status(204);
 });
 
 passport.serializeUser(function(user, done) {
