@@ -18,7 +18,7 @@ passport.use(new LocalStrategy({
 	database.mapping.Utente.findOne({
 		where: ["lower(username) like ?", {
 			replacements: [username],
-			type: sequelize.QueryTypes.SELECT
+			type: database.connection.QueryTypes.SELECT
 		}]
 	}, (err, user) => {
 		if (!user || !Utils.validPassword(user, password)) {
