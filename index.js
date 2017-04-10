@@ -16,12 +16,7 @@ passport.use(new LocalStrategy({
 	passReqToCallBack: true
 }, (usernameTxt, password, done) => {
 	database.mapping.Utente.findOne({
-		where: ["lower(username) like :usern", {
-			replacements: {
-				usern: usernameTxt
-			},
-			type: database.connection.QueryTypes.SELECT
-		}]
+		where: ["lower(username) like ?", [usernameTxt]]
 	}, (err, user) => {
 		if (!user || !Utils.validPassword(user, password)) {
 			done(null, false);
