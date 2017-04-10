@@ -33,7 +33,7 @@ angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', '$tim
 				vm.prodotti = response.data;
 			}, 500)
 		}, (response) => {
-			alert.show("Errore nel recuperare l'elenco dei prodotti. Ricaricare la pagina.");
+			alert("Errore nel recuperare l'elenco dei prodotti. Ricaricare la pagina.");
 			console.error("Errore nel recuperare l'elenco dei prodotti. Ricaricare la pagina.", response);
 		});
 	}
@@ -47,7 +47,7 @@ angular.module('mercatino').controller('productsCtrl', ['$http', '$scope', '$tim
 				vm.categorie = response.data;
 			}, 500)
 		}, (response) => {
-			alert.show("Errore nel recuperare l'elenco delle categorie. Ricaricare la pagina.");
+			alert("Errore nel recuperare l'elenco delle categorie. Ricaricare la pagina.");
 			console.error("Errore nel recuperare l'elenco delle categorie. Ricaricare la pagina.", response);
 		});
 	}
