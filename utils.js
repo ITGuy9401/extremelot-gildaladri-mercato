@@ -24,3 +24,9 @@ exports.bufferToBase64 = (obj, prop) => {
 		obj[prop] = buf.toString('base64');
 	}
 }
+
+exports.isAuth = (req, res, next) => {
+	if (req.isAuthenticated())
+		return next();
+	res.redirect('/market/#!/login');
+}

@@ -88,6 +88,11 @@ passport.deserializeUser(function(id, done) {
 		done(err, user);
 	});
 });
+/* Handle Logout */
+router.get('/api/logout', function(req, res) {
+	req.logout();
+	res.redirect('/');
+});
 
 require('./rest-products.js').main(app, database);
 require('./rest-categories.js').main(app, database);
