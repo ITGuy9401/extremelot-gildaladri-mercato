@@ -20,7 +20,7 @@ exports.main = (app, database) => {
 			titolo: req.body.titolo,
 			descrizione: req.body.descrizione,
 			costo: req.body.costo,
-			immagine: immagine.data || null;
+			immagine: immagine.data || null
 		}).then((prodotto) => {
 			Utils.bufferToBase64(prodotto, 'immagine');
 			res.json(prodotto);
