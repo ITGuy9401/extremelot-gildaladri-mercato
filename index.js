@@ -18,6 +18,11 @@ passport.use(new LocalStrategy({
 	database.mapping.Utente.findOne({
 		where: ["lower(username) like lower(?)", [usernameTxt]]
 	}, (err, user) => {
+		console.log(JSON.stringify(err));
+		console.log(JSON.stringify(user));
+		if (err) {
+			done(err, false);
+		}
 		if (!user || !Utils.validPassword(user, password)) {
 			done(null, false);
 			return;
