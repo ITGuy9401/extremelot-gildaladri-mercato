@@ -68,6 +68,8 @@ app.post('/api/login',
 	passport.authenticate('local', (req, res) => {
 		// If this function gets called, authentication was successful.
 		// `req.user` contains the authenticated user.
+		console.log(JSON.stringify(req))
+		console.log(JSON.stringify(res))
 		res.json(req.user);
 	})
 );
