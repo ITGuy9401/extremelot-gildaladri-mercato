@@ -65,7 +65,7 @@ app.get('/market', (req, res) => {
 	res.sendfile('./frontend/market.html');
 });
 
-app.post('/login',
+app.post('/api/login',
 	passport.authenticate('local', {
 		successRedirect: '/market/#!/admin',
 		failureRedirect: '/market/#!/login',
