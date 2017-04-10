@@ -12,33 +12,35 @@ const Config = require('./config.js').nconf;
 
 const app = express();
 
-passport.use(new LocalStrategy(
-	function(username, password, done) {
-		database.mapping.Utente.findAll({
-			where: {
-				username: username
-			}
-		}).then((user) => {
-			console.log(JSON.stringify(user));
-			if (!user || user.length == 0) {
-				return done(null, false, {
-					message: 'Incorrect username.'
-				});
-			}
-			if (!Utils.validPassword(user[0], password)) {
-				return done(null, false, {
-					message: 'Incorrect password.'
-				});
-			}
-			return done(null, {
-				'id': user.id,
-				'lotname': user.lotname,
-				'username': user.username
+passport.use(new LocalStrategy({
+	usernameField: 'username',
+	passwordField: 'password',
+	passReqToCallBack: true
+}, function(username, password, done) {
+	database.mapping.Utente.findAll({
+		where: {
+			username: username
+		}
+	}).then((user) => {
+		if (user.length != 1) {
+			return done(null, false, {
+				message: 'Incorrect username.'
 			});
-		}, (err) => {
-			return done(err);
+		}
+		if (!Utils.validPassword(user[0], password)) {
+			return done(null, false, {
+				message: 'Incorrect password.'
+			});
+		}
+		return done(null, {
+			'id': user.id,
+			'lotname': user.lotname,
+			'username': user.username
 		});
-	}));
+	}, (err) => {
+		return done(err);
+	});
+}));
 
 app.use(express.static(__dirname + '/frontend')); // set the static files location eg. /public/img will be /img for users
 app.use(morgan('dev')); // log every request to the console
