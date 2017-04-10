@@ -17,22 +17,14 @@ passport.use(new LocalStrategy({
 }, (usernameTxt, password, done) => {
 	var findone = database.mapping.Utente.findOne({
 		where: ["lower(username) like lower(?)", [usernameTxt]]
-	}, (err, user) => {
-		console.log(JSON.stringify(err));
-		console.log(JSON.stringify(user));
-		if (err) {
-			done(err, false);
-		}
+	}).then((user) => {
+		console.log('user: ', JSON.stringify(user));
 		if (!user || !Utils.validPassword(user, password)) {
 			done(null, false);
 			return;
 		}
 		done(null, user);
 	});
-	console.log(JSON.stringify(findone));
-	findone.then((data) => {
-		console.log(JSON.stringify(data));
-	})
 }));
 
 app.use(express.static(__dirname + '/frontend')); // set the static files location eg. /public/img will be /img for users
