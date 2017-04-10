@@ -1,4 +1,4 @@
-angular.module('mercatino').controller('loginCtrl', function($scope) {
+angular.module('mercatino').controller('loginCtrl', ['$scope', '$http', function($scope, $http) {
 	var vm = this;
 	vm.doSubmit = doSubmit;
 	vm.form = {};
@@ -18,4 +18,4 @@ angular.module('mercatino').controller('loginCtrl', function($scope) {
 			console.error("Errore nella login", response);
 		});
 	}
-});
+}]);
