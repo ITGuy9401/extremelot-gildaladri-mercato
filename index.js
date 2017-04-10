@@ -17,7 +17,7 @@ passport.use(new LocalStrategy({
 	},
 	(username, password, done) => {
 		database.mapping.Utente.findOne({
-			where {
+			where: {
 				username: {
 					ilike: username
 				}
