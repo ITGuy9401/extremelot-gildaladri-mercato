@@ -14,7 +14,7 @@ const app = express();
 
 passport.use(new LocalStrategy(
 	function(username, password, done) {
-		database.mapping.Utente.findOne({
+		database.mapping.Utente.findAll({
 			where: {
 				username: username
 			}
@@ -27,7 +27,7 @@ passport.use(new LocalStrategy(
 					message: 'Incorrect username.'
 				});
 			}
-			if (!Utils.validPassword(user, password)) {
+			if (!Utils.validPassword(user[0], password)) {
 				return done(null, false, {
 					message: 'Incorrect password.'
 				});
