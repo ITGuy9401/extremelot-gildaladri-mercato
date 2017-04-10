@@ -72,6 +72,7 @@ app.post('/api/login',
 		console.log(JSON.stringify(res))
 		res.json(req.user);
 	});
+
 /* Handle Logout */
 app.get('/api/logout', function(req, res) {
 	req.logout();

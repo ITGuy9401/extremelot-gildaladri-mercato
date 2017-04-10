@@ -4,10 +4,13 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Autenticazione</div>
 				<div class="panel-body">
-					<div class="col-sm-12 text-center">
+					<div class="col-xs-12 text-center">
 						<img src="img/guild.png" style="max-width:64px; height: auto" />
 					</div>
-					<div class="col-sm-12 text-center">
+					<div class="col-xs-12 text-center">
+						<div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="vm.closeAlert($index)">{{alert.msg}}</div>
+					</div>
+					<div class="col-xs-12 text-center">
 						<form class="form-horizontal" ng-submit="$event.preventDefault(); vm.doSubmit()" target="_self">
 							<div class="form-group">
 								<label for="username" class="col-sm-2 control-label">Username</label>

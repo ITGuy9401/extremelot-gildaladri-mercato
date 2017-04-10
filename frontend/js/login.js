@@ -2,6 +2,26 @@ angular.module('mercatino').controller('loginCtrl', ['$scope', '$http', function
 	var vm = this;
 	vm.doSubmit = doSubmit;
 	vm.form = {};
+	vm.alerts = [{
+			type: 'danger',
+			msg: 'Oh snap! Change a few things up and try submitting again.'
+		},
+		{
+			type: 'success',
+			msg: 'Well done! You successfully read this important alert message.'
+		}
+	];
+
+	vm.addAlert = (type, message) => {
+		$scope.alerts.push({
+			msg: message,
+			type: type
+		});
+	};
+
+	vm.closeAlert = (index) => {
+		vm.alerts.splice(index, 1);
+	};
 
 	function doSubmit() {
 		$http({
@@ -14,7 +34,13 @@ angular.module('mercatino').controller('loginCtrl', ['$scope', '$http', function
 		}).then((response) => {
 			console.log(JSON.stringify(response));
 		}, (response) => {
-			alert("Errore nella login.\n");
+			if (response.status == 401) {
+				vm.addAlert('warning', 'Username o password errati');
+			} else if (response.status > 500 || response.status == 404) {
+				vm.addAlert('danger', 'Il server è andato in errore. Riprova più tardi');
+			} else {
+				vm.addAlert('danger', 'Errore non gestito: ' + response.statusText + ' ' + response.status + ' - ' + response.data);
+			}
 			console.error("Errore nella login", response);
 		});
 	}
