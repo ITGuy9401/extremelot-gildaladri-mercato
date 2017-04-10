@@ -15,7 +15,9 @@ const app = express();
 passport.use(new LocalStrategy(
 	function(username, password, done) {
 		database.mapping.Utente.findOne({
-			username: username
+			where: {
+				username: username
+			}
 		}, function(err, user) {
 			if (err) {
 				return done(err);
