@@ -15,7 +15,7 @@ const app = express();
 passport.use(new LocalStrategy({
 	passReqToCallBack: true
 }, (usernameTxt, password, done) => {
-	database.mapping.Utente.findOne({
+	var findone = database.mapping.Utente.findOne({
 		where: ["lower(username) like lower(?)", [usernameTxt]]
 	}, (err, user) => {
 		console.log(JSON.stringify(err));
@@ -29,6 +29,10 @@ passport.use(new LocalStrategy({
 		}
 		done(null, user);
 	});
+	console.log(JSON.stringify(findone));
+	findone.then((data) => {
+		console.log(JSON.stringify(data));
+	})
 }));
 
 app.use(express.static(__dirname + '/frontend')); // set the static files location eg. /public/img will be /img for users
