@@ -13,34 +13,20 @@ const Config = require('./config.js').nconf;
 const app = express();
 
 passport.use(new LocalStrategy({
-	usernameField: 'username',
-	passwordField: 'password',
-	passReqToCallback: true
-}, function(username, password, done) {
-	database.mapping.Utente.findAll({
-		where: {
-			username: username
-		}
-	}).then((user) => {
-		if (user.length != 1) {
-			return done(null, false, {
-				message: 'Incorrect username.'
-			});
-		}
-		if (!Utils.validPassword(user[0], password)) {
-			return done(null, false, {
-				message: 'Incorrect password.'
-			});
-		}
-		return done(null, {
-			'id': user.id,
-			'lotname': user.lotname,
-			'username': user.username
+		passReqToCallBack: true
+	},
+	(username, password, done) => {
+		database.mapping.Utente.findOne({
+			username
+		}, (err, user) => {
+			if (!user || !Utils.validPassword(user, password)) {
+				done(null, false);
+				return;
+			}
+			done(null, user);
 		});
-	}, (err) => {
-		return done(err);
-	});
-}));
+	}
+));
 
 app.use(express.static(__dirname + '/frontend')); // set the static files location eg. /public/img will be /img for users
 app.use(morgan('dev')); // log every request to the console
