@@ -13,24 +13,20 @@ const Config = require('./config.js').nconf;
 const app = express();
 
 passport.use(new LocalStrategy({
-		passReqToCallBack: true
-	},
-	(username, password, done) => {
-		database.mapping.Utente.findOne({
-			where: {
-				username: {
-					ilike: username
-				}
-			}
-		}, (err, user) => {
-			if (!user || !Utils.validPassword(user, password)) {
-				done(null, false);
-				return;
-			}
-			done(null, user);
-		});
-	}
-));
+	passReqToCallBack: true
+},
+(username, password, done) => {
+	database.mapping.Utente.findOne({
+			where: "lower(username) like '" + username + "'"
+		}
+	}, (err, user) => {
+		if (!user || !Utils.validPassword(user, password)) {
+			done(null, false);
+			return;
+		}
+		done(null, user);
+	});
+}));
 
 app.use(express.static(__dirname + '/frontend')); // set the static files location eg. /public/img will be /img for users
 app.use(morgan('dev')); // log every request to the console
