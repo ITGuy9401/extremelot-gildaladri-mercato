@@ -16,7 +16,7 @@ exports.main = (app, database) => {
 			codice: req.body.codice,
 			titolo: req.body.titolo,
 			descrizione: req.body.descrizione,
-			immagine: immagine
+			immagine: immagine.data || null
 		}).then((categoria) => {
 			Utils.bufferToBase64(categoria, 'immagine');
 			res.json(categoria);
