@@ -67,8 +67,8 @@ app.get('/market', (req, res) => {
 
 app.post('/login',
 	passport.authenticate('local', {
-		successRedirect: '/',
-		failureRedirect: '/login',
+		successRedirect: '/market/#!/admin',
+		failureRedirect: '/market/#!/login',
 		failureFlash: true
 	})
 );

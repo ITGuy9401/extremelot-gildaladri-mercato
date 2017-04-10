@@ -4,7 +4,7 @@ CREATE TABLE `prodotto` (
 	`titolo` varchar(50) NOT NULL,
 	`descrizione` varchar(255) NOT NULL,
 	`costo` FLOAT NOT NULL,
-	`immagine` blob NOT NULL,
+	`immagine` longblob NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
@@ -13,7 +13,7 @@ CREATE TABLE `categoria` (
 	`codice` varchar(50) NOT NULL UNIQUE,
 	`titolo` varchar(50) NOT NULL,
 	`descrizione` varchar(255) NOT NULL,
-	`immagine` blob,
+	`immagine` longblob,
 	PRIMARY KEY (`id`)
 );
 
