@@ -18,11 +18,9 @@ passport.use(new LocalStrategy(
 			where: {
 				username: username
 			}
-		}, function(err, user) {
-			if (err) {
-				return done(err);
-			}
-			if (!user) {
+		}).then((user) => {
+			console.log(JSON.stringify(user));
+			if (!user || user.length == 0) {
 				return done(null, false, {
 					message: 'Incorrect username.'
 				});
@@ -37,6 +35,8 @@ passport.use(new LocalStrategy(
 				'lotname': user.lotname,
 				'username': user.username
 			});
+		}, (err) => {
+			return done(err);
 		});
 	}));
 
