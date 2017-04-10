@@ -10,7 +10,7 @@ angular.module('mercatino', ['ngRoute', 'ui.bootstrap']).config(function($routeP
 	}).when('/admin', {
 		templateUrl: 'views/admin.html'
 	}).when('/login', {
-		templateUrl: 'views/login.html'
+		templateUrl: 'views/login.html',
 		controller: 'loginCtrl',
 		controllerAs: 'vm'
 	}).otherwise({
