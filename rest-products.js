@@ -14,8 +14,10 @@ exports.main = (app, database) => {
 	app.post('/api/products', function(req, res) {
 		if (!req.files)
 			return res.status(400).send('Non è stata selezionata l\'immagine.');
-
 		let immagine = req.files.immagine;
+
+		console.log(JSON.stringify(immagine));
+
 		database.mapping.Prodotto.create({
 			codice: req.body.codice,
 			titolo: req.body.titolo,
