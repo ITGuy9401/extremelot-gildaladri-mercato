@@ -3,27 +3,24 @@ const Utils = require('./utils.js');
 exports.main = (app, database) => {
 	app.get('/api/products', function(req, res) {
 		database.mapping.Prodotto.findAll().then((prodotti) => {
-			//console.log(JSON.stringify(prodotti));
 			for (var i = 0; i < prodotti.length; i++) {
 				Utils.bufferToBase64(prodotti[i], 'immagine');
 			}
-			//console.log(JSON.stringify(prodotti));
 			res.json(prodotti);
 		});
 	});
 	app.post('/api/products', function(req, res) {
 		if (!req.files)
 			return res.status(400).send('Non è stata selezionata l\'immagine.');
-		let immagine = req.files.immagine;
 
-		console.log(JSON.stringify(immagine));
+		let immagine = req.files.immagine;
 
 		database.mapping.Prodotto.create({
 			codice: req.body.codice,
 			titolo: req.body.titolo,
 			descrizione: req.body.descrizione,
 			costo: req.body.costo,
-			immagine: immagine
+			immagine: immagine.data || null;
 		}).then((prodotto) => {
 			Utils.bufferToBase64(prodotto, 'immagine');
 			res.json(prodotto);
