@@ -15,7 +15,7 @@ const app = express();
 passport.use(new LocalStrategy({
 	usernameField: 'username',
 	passwordField: 'password',
-	passReqToCallBack: true
+	passReqToCallback: true
 }, function(username, password, done) {
 	database.mapping.Utente.findAll({
 		where: {
