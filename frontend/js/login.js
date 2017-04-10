@@ -2,18 +2,10 @@ angular.module('mercatino').controller('loginCtrl', ['$scope', '$http', function
 	var vm = this;
 	vm.doSubmit = doSubmit;
 	vm.form = {};
-	vm.alerts = [{
-			type: 'danger',
-			msg: 'Oh snap! Change a few things up and try submitting again.'
-		},
-		{
-			type: 'success',
-			msg: 'Well done! You successfully read this important alert message.'
-		}
-	];
+	vm.alerts = [];
 
 	vm.addAlert = (type, message) => {
-		$scope.alerts.push({
+		vm.alerts.push({
 			msg: message,
 			type: type
 		});
