@@ -14,11 +14,9 @@ const app = express();
 
 passport.use(new LocalStrategy({
 	passReqToCallBack: true
-},
-(username, password, done) => {
+}, (username, password, done) => {
 	database.mapping.Utente.findOne({
-			where: "lower(username) like '" + username + "'"
-		}
+		where: "lower(username) like '" + username + "'"
 	}, (err, user) => {
 		if (!user || !Utils.validPassword(user, password)) {
 			done(null, false);
