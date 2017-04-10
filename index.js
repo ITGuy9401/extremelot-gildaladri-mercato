@@ -18,12 +18,16 @@ passport.use(new LocalStrategy({
 	var findone = database.mapping.Utente.findOne({
 		where: ["lower(username) like lower(?)", [usernameTxt]]
 	}).then((user) => {
-		console.log('user: ', JSON.stringify(user));
 		if (!user || !Utils.validPassword(user, password)) {
 			done(null, false);
 			return;
 		}
-		done(null, user);
+		done(null, {
+			id: user.id,
+			lotname: user.lotname,
+			username: user.username,
+			email: user.email
+		});
 	});
 }));
 
