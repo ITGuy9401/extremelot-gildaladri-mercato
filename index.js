@@ -78,6 +78,11 @@ app.post('/api/login',
 		failureFlash: true
 	})
 );
+/* Handle Logout */
+app.get('/api/logout', function(req, res) {
+	req.logout();
+	res.redirect('/');
+});
 
 passport.serializeUser(function(user, done) {
 	done(null, user.id);
@@ -87,11 +92,6 @@ passport.deserializeUser(function(id, done) {
 	database.mapping.Utente.findById(id, function(err, user) {
 		done(err, user);
 	});
-});
-/* Handle Logout */
-router.get('/api/logout', function(req, res) {
-	req.logout();
-	res.redirect('/');
 });
 
 require('./rest-products.js').main(app, database);
