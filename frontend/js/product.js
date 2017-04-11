@@ -1,5 +1,6 @@
 angular.module('mercatino').controller('productCtrl', ['$http', '$scope', '$timeout', '$routeParams', function($http, $scope, $timeout, $routeParams) {
     var vm = this;
+	 vm.refresh = getDetailProduct;
 
     vm.dataLoaded = false;
 
@@ -18,6 +19,8 @@ angular.module('mercatino').controller('productCtrl', ['$http', '$scope', '$time
  			console.error("Errore nel recuperare il dettaglio del prodotto. Ricaricare la pagina.", response);
  		});
     }
+
+	 getDetailProduct();
 
     $scope.$watch(() => {
         return vm.data
