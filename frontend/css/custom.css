@@ -4,12 +4,13 @@
 }
 
 .productImage {
-	border: 1px solid rgb(34,34,34);
-	border-radius: 50%;
 	background-color: white;
-	text-align: center;
-	max-width: 100px;
+	max-width: 150px;
 	max-height: auto;
+}
+
+.productImage .big {
+	max-width: 250px;
 }
 
 .cssload-loader {
