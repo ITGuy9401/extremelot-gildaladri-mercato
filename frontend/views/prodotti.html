@@ -33,17 +33,17 @@
 
 	<div class="panel panel-default col-xs-12">
 		<div class="row panel-heading">Prodotti</div>
-		<div class="panel-body">
+		<div class="row panel-body">
 			<div ng-repeat="prodotto in vm.prodotti" class="panel panel-info col-xs-12 col-sm-6 col-md-4 col-lg-3" style="margin: 5px;">
 				<div class="row panel-heading">{{prodotto.titolo}}</div>
-				<div class="panel-body">
+				<div class="row panel-body">
 					<div class="col-xs-12 text-center">
 						<img ng-src="data:image/png;base64,{{prodotto.immagine}}" class="productImage"/>
 					</div>
 					<div class="col-xs-12 simpleText text-center">
 						{{prodotto.descrizione}}
 					</div>
-					<div class="col-xs-12 text-right">
+					<div style="margin: 5px 0px;" class="col-xs-12 text-right">
 						<a ng-href="#!/prodotto/{{prodotto.codice}}" class="btn btn-info">Apri</a>
 					</div>
 				</div>

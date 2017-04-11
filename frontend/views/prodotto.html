@@ -11,13 +11,13 @@
 		</div>
 	</div>
 </div>
-<div ng-show="vm.dataLoaded" class="container-fluid">
+<div ng-show="vm.dataLoaded" class="container-fluid" style="height: 100%">
 	<div style="display:table;margin:auto;height:100%;max-width:85%">
 		<div style="display:table-cell;vertical-align:middle;">
 			<div style="margin-left:auto;margin-right:auto;">
 				<div class="panel panel-default col-xs-12">
 					<div class="row panel-heading">{{vm.data.titolo}}</div>
-					<div class="panel-body">
+					<div class="row panel-body">
 						<div class="col-xs-12 text-center">
 							<img ng-src="data:image/png;base64,{{vm.data.immagine}}" class="productImage" />
 						</div>
