@@ -7,6 +7,10 @@ angular.module('mercatino', ['ngRoute', 'ui.bootstrap']).config(function($routeP
 		templateUrl: 'views/prodotti.html',
 		controller: 'productsCtrl',
 		controllerAs: 'vm'
+	}).when('/prodotto/:productCode', {
+		templateUrl: 'views/prodotto.html',
+		controller: 'productCtrl',
+		controllerAs: 'vm'
 	}).when('/admin', {
 		templateUrl: 'views/admin.html'
 	}).when('/login', {
