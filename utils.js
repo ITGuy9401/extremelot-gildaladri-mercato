@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 
 exports.validPassword = (user, password) => {
-	let currPass = exports.passwordChipher(password).toString('base64');
+	let currPass = exports.passwordChipher(password);
 	console.log(password);
 	console.log(currPass);
 	console.log(user.password);
@@ -10,7 +10,7 @@ exports.validPassword = (user, password) => {
 };
 
 exports.passwordChipher = (password) => {
-	return crypto.createHash('sha256').digest(password);
+	return crypto.createHash('sha256').digest(password).toString('base64');
 };
 
 exports.getSingleResult = (results) => {
