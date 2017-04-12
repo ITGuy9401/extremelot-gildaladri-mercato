@@ -1,25 +1,39 @@
-angular.module('mercatino', ['ngRoute', 'ui.bootstrap']).config(function($routeProvider, $locationProvider) {
-	$routeProvider.when('/mercatino', {
-		templateUrl: 'views/mercatino.html'
-	}).when('/regolamento', {
-		templateUrl: 'views/regolamento.html'
-	}).when('/prodotti', {
-		templateUrl: 'views/prodotti.html',
-		controller: 'productsCtrl',
-		controllerAs: 'vm'
-	}).when('/prodotto/:productCode', {
-		templateUrl: 'views/prodotto.html',
-		controller: 'productCtrl',
-		controllerAs: 'vm'
-	}).when('/admin', {
-		templateUrl: 'views/admin.html'
-	}).when('/login', {
+angular.module('mercatino', ['ui.router', 'ui.bootstrap']).config(function($stateProvider, $urlRouterProvider) {
+	$urlRouterProvider.otherwise('/mercatino');
+
+	$stateProvider.state('login', {
+		url: '/login',
 		templateUrl: 'views/login.html',
 		controller: 'loginCtrl',
 		controllerAs: 'vm'
-	}).otherwise({
-		redirectTo: '/mercatino'
+	}).state('mercatino', {
+		url: '/mercatino',
+		templateUrl: 'views/mercatino.html'
+	}).state('regolamento', {
+		url: '/regolamento',
+		templateUrl: 'views/regolamento.html'
+	}).state('prodotti', {
+		url: '/prodotti',
+		templateUrl: 'views/prodotti.html',
+		controller: 'productsCtrl',
+		controllerAs: 'vm'
+	}).state('prodotti', {
+		url: '/prodotti',
+		templateUrl: 'views/prodotti.html',
+		controller: 'productsCtrl',
+		controllerAs: 'vm'
+	}).state('prodotto', {
+		url: '/prodotto/:productCode',
+		templateUrl: 'views/prodotto.html',
+		controller: 'productCtrl',
+		controllerAs: 'vm'
+	}).state('admin', {
+		url: '/admin',
+		templateUrl: 'views/admin.html',
+		controller: 'adminCtrl',
+		controllerAs: 'vm'
 	});
+
 
 }).controller('menuCtrl', function($scope) {
 	var vm = this;
