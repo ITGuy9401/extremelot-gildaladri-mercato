@@ -1,4 +1,4 @@
-angular.module('mercatino', ['ui.router', 'ui.bootstrap']).config(function($stateProvider, $urlRouterProvider) {
+angular.module('mercatino', ['ngCookies', 'ui.router', 'ui.bootstrap']).config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/mercatino');
 
 	$stateProvider.state('login', {
