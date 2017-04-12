@@ -1,12 +1,11 @@
 const crypto = require('crypto');
-const hash = crypto.createHash('sha256');
 
 exports.validPassword = (user, password) => {
 	return exports.passwordChipher(password) == user.password;
 };
 
 exports.passwordChipher = (password) => {
-	return hash.digest(password);
+	return crypto.createHash('sha256').digest(password);
 };
 
 exports.getSingleResult = (results) => {
