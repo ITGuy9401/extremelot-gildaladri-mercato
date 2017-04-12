@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 
 exports.validPassword = (user, password) => {
-	let currPass = exports.passwordChipher(password);
+	let currPass = exports.passwordChipher(password).toString('utf-8');
 	console.log(password);
 	console.log(currPass);
 	console.log(user.password);
