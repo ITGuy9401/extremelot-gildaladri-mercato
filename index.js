@@ -79,6 +79,7 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
 	database.mapping.Utente.findById(id, function(err, user) {
+		console.log(err, user);
 		done(err, user);
 	});
 });
