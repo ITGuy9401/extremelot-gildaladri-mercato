@@ -17,11 +17,6 @@ angular.module('mercatino', ['ui.router', 'ui.bootstrap']).config(function($stat
 		templateUrl: 'views/prodotti.html',
 		controller: 'productsCtrl',
 		controllerAs: 'vm'
-	}).state('prodotti', {
-		url: '/prodotti',
-		templateUrl: 'views/prodotti.html',
-		controller: 'productsCtrl',
-		controllerAs: 'vm'
 	}).state('prodotto', {
 		url: '/prodotto/:productCode',
 		templateUrl: 'views/prodotto.html',
