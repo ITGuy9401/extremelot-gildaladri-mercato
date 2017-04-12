@@ -13,7 +13,7 @@
 			min: Config.get('JAWSDB_POOL_MIN'),
 			idle: Config.get('JAWSDB_POOL_IDLE')
 		},
-		
+
 		define: {
 			// don't use camelcase for automatically added attributes but underscore style
 			// so updatedAt will be updated_at
@@ -52,6 +52,11 @@
 		descrizione: {
 			type: Sequelize.STRING,
 			allowNull: false
+		},
+		descrizioneCompleta: {
+			type: Sequelize.TEXT,
+			allowNull: false,
+			field: "descrizione_completa"
 		},
 		costo: {
 			type: Sequelize.DECIMAL,

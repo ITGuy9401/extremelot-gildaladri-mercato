@@ -3,6 +3,7 @@ CREATE TABLE `prodotto` (
 	`codice` varchar(50) NOT NULL UNIQUE,
 	`titolo` varchar(50) NOT NULL,
 	`descrizione` varchar(255) NOT NULL,
+	`descrizione_completa` varchar(255) NOT NULL,
 	`costo` FLOAT NOT NULL,
 	`immagine` longblob NOT NULL,
 	PRIMARY KEY (`id`)
