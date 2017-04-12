@@ -1,7 +1,12 @@
 const crypto = require('crypto');
 
 exports.validPassword = (user, password) => {
-	return exports.passwordChipher(password) == user.password;
+	let currPass = exports.passwordChipher(password);
+	console.log(password);
+	console.log(currPass);
+	console.log(user.password);
+	console.log(currPass == user.password);
+	return currPass == user.password;
 };
 
 exports.passwordChipher = (password) => {
