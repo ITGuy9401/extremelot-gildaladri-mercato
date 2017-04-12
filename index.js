@@ -64,9 +64,7 @@ app.get('/market', (req, res) => {
 	res.sendfile('./frontend/market.html');
 });
 
-app.post('/api/login',
-passport.authenticate('local')
-});
+app.post('/api/login', passport.authenticate('local'));
 
 /* Handle Logout */
 app.get('/api/logout', function(req, res) {
