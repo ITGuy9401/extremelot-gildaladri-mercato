@@ -3,7 +3,7 @@ exports.configurePassport = (app, database) => {
     const passport = require('passport');
     const LocalStrategy = require('passport-local').Strategy;
     const Utils = require('./utils.js');
-    const session = require('passportutils.js');
+    const session = require('./passportutils.js');
 
     passport.use(new LocalStrategy({
         passReqToCallBack: true
