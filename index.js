@@ -12,26 +12,6 @@ const Config = require('./config.js').nconf;
 
 const app = express();
 
-passport.use(new LocalStrategy({
-	passReqToCallBack: true
-}, (usernameTxt, password, done) => {
-	var findone = database.mapping.Utente.findOne({
-		where: ["lower(username) like lower(?)", [usernameTxt]]
-	}).then((user) => {
-		if (user && Utils.validPassword(user, password)) {
-			done(null, {
-				id: user.id,
-				lotname: user.lotname,
-				username: user.username,
-				email: user.email
-			});
-		}
-		done(null, false);
-		return;
-
-	});
-}));
-
 app.use(express.static(__dirname + '/frontend')); // set the static files location eg. /public/img will be /img for users
 app.use(morgan('dev')); // log every request to the console
 app.use(bodyParser.urlencoded({
@@ -75,17 +55,7 @@ app.get('/api/logout', function(req, res) {
 	return res.status(204);
 });
 
-passport.serializeUser(function(user, done) {
-	done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-	database.mapping.Utente.findById(id, function(err, user) {
-		console.log(err, user);
-		done(err, user);
-	});
-});
-
+require('./passportconfig.js').configurePassport(app, database);
 require('./rest-products.js').main(app, database);
 require('./rest-categories.js').main(app, database);
 

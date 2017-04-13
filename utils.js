@@ -25,8 +25,10 @@ exports.bufferToBase64 = (obj, prop) => {
 	}
 }
 
-exports.isAuth = (req, res, next) => {
-	if (req.isAuthenticated())
-		return next();
-	res.redirect('/market/#!/login');
+/**
+ *  Route middleware to ensure user is authenticated.
+ */
+exports.ensureAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) { return next(); }
+  res.send(401);
 }
