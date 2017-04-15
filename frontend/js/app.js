@@ -29,7 +29,20 @@ angular.module('mercatino', ['ngCookies', 'ngSanitize', 'ui.router', 'ui.bootstr
 		controllerAs: 'vm'
 	});
 
-
-}).controller('menuCtrl', function($scope) {
+}).run(['$httpProvider', '$location', ($httpProvider, $location) => {
+	$httpProvider.interceptors.push(function($q, $location) {
+		return {
+			response: function(response) {
+				// do something on success
+				return response;
+			},
+			responseError: function(response) {
+				if (response.status === 401) $location.url('/login');
+				else if (response.status === 403) alert('Non sei atorizzato ad eseguire questa azione.');
+				return $q.reject(response);
+			}
+		};
+	});
+}]).controller('menuCtrl', function($scope) {
 	var vm = this;
 });
