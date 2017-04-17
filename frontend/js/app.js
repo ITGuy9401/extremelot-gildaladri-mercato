@@ -1,4 +1,4 @@
-angular.module('mercatino', ['ngCookies', 'ngSanitize', 'ui.router', 'ui.bootstrap']).config(function($httpProvider, $location, $stateProvider, $urlRouterProvider) {
+angular.module('mercatino', ['ngCookies', 'ngSanitize', 'ui.router', 'ui.bootstrap']).config(function($httpProvider, $stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/mercatino');
 
 	$stateProvider.state('login', {
@@ -29,8 +29,7 @@ angular.module('mercatino', ['ngCookies', 'ngSanitize', 'ui.router', 'ui.bootstr
 		controllerAs: 'vm'
 	});
 	$httpProvider.interceptors.push('loginInterceptor');
-}).factory('loginInterceptor', function($q, $inject) {
-	var $location = $inject('$location');
+}).factory('loginInterceptor', function($q, $location) {
 	return {
 		response: function(response) {
 			// do something on success
