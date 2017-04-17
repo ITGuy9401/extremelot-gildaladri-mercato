@@ -29,7 +29,8 @@ angular.module('mercatino', ['ngCookies', 'ngSanitize', 'ui.router', 'ui.bootstr
 		controllerAs: 'vm'
 	});
 	$httpProvider.interceptors.push('loginInterceptor');
-}).factory('loginInterceptor', function($q, $location) {
+}).factory('loginInterceptor', function($q, $inject) {
+	var $location = $inject('$location');
 	return {
 		response: function(response) {
 			// do something on success
