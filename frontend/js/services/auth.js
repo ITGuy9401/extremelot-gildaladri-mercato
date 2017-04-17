@@ -1,81 +1,47 @@
 'use strict';
 
 angular.module('mercatino')
-  .factory('Auth', function Auth($location, $rootScope, Session, User, $cookieStore) {
-    $rootScope.currentUser = $cookieStore.get('user') || null;
-    $cookieStore.remove('user');
-
-    return {
-
-      login: function(provider, user, callback) {
-        var cb = callback || angular.noop;
-        Session.save({
-          provider: provider,
-          email: user.email,
-          password: user.password,
-          rememberMe: user.rememberMe
-        }, function(user) {
-          $rootScope.currentUser = user;
-          return cb();
-        }, function(err) {
-          return cb(err.data);
-        });
-      },
-
-      logout: function(callback) {
-        var cb = callback || angular.noop;
-        Session.delete(function(res) {
-            $rootScope.currentUser = null;
-            return cb();
-          },
-          function(err) {
-            return cb(err.data);
-          });
-      },
-
-      createUser: function(userinfo, callback) {
-        var cb = callback || angular.noop;
-        User.save(userinfo,
-          function(user) {
-            $rootScope.currentUser = user;
-            return cb();
-          },
-          function(err) {
-            return cb(err.data);
-          });
-      },
-
-      currentUser: function() {
-        Session.get(function(user) {
-          $rootScope.currentUser = user;
-        });
-      },
-
-      changePassword: function(email, oldPassword, newPassword, callback) {
-        var cb = callback || angular.noop;
-        User.update({
-          email: email,
-          oldPassword: oldPassword,
-          newPassword: newPassword
-        }, function(user) {
-            console.log('password changed');
-            return cb();
-        }, function(err) {
-            return cb(err.data);
-        });
-      },
-
-      removeUser: function(email, password, callback) {
-        var cb = callback || angular.noop;
-        User.delete({
-          email: email,
-          password: password
-        }, function(user) {
-            console.log(user + 'removed');
-            return cb();
-        }, function(err) {
-            return cb(err.data);
-        });
-      }
-    };
-  })
+	.factory('Auth', function Auth($location, $rootScope, $q, $cookieStore) {
+		$rootScope.currentUser = $cookieStore.get('user') || null;
+		$cookieStore.remove('user');
+		return {
+			login: function(username, password) {
+				return $http({
+					method: 'POST',
+					url: '/api/login',
+					data: {
+						'username': username,
+						'password': password
+					}
+				});
+			},
+			logout: function() {
+				return $http({
+					method: 'DELETE',
+					url: '/api/login'
+				});
+			},
+			currentSession: function() {
+				// Initialize a new promise
+				var deferred = $q.defer(); // Make an AJAX call to check if the user is logged in
+				$http.get('/auth/session').then(function(user) { // Authenticated
+					if (user !== '0') deferred.resolve(); // Not Authenticated
+					else {
+						deferred.reject();
+						$location.url('/login?message=notLoggedIn');
+					}
+				});
+				return deferred.promise;
+			},
+			changePassword: function(oldPwd, newPwd) {
+				return $http({
+					method: 'POST',
+					url: '/api/changePassword',
+					data: {
+						'username': oldPwd,
+						'password': newPwd
+					}
+				});
+			}
+		};
+	});

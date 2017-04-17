@@ -50,7 +50,7 @@ angular.module('mercatino', ['ngCookies', 'ngSanitize', 'ui.router', 'ui.bootstr
 var checkLoggedin = function($q, $timeout, $http, $location, $rootScope) {
 	// Initialize a new promise
 	var deferred = $q.defer(); // Make an AJAX call to check if the user is logged in
-	$http.get('/auth/session').success(function(user) { // Authenticated
+	$http.get('/auth/session').then(function(user) { // Authenticated
 		if (user !== '0') deferred.resolve(); // Not Authenticated
 		else {
 			deferred.reject();

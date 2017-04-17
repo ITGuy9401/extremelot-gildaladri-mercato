@@ -1,4 +1,4 @@
-angular.module('mercatino').controller('loginCtrl', ['$scope', '$http', function($scope, $http) {
+angular.module('mercatino').controller('loginCtrl', ['$scope', '$http', 'Auth', function($scope, $http, Auth) {
 	var vm = this;
 	vm.doSubmit = doSubmit;
 	vm.form = {};
@@ -14,16 +14,14 @@ angular.module('mercatino').controller('loginCtrl', ['$scope', '$http', function
 	vm.closeAlert = (index) => {
 		vm.alerts.splice(index, 1);
 	};
+	Auth.currentSession().then((data) => {
+		$location('/admin')
+	}, (err) => {
+
+	});
 
 	function doSubmit() {
-		$http({
-			method: 'POST',
-			url: '/api/login',
-			data: {
-				'username': vm.form.username,
-				'password': vm.form.password
-			}
-		}).then((response) => {
+		Auth.login(vm.form.username, vm.form.password).then((response) => {
 			console.log(JSON.stringify(response));
 		}, (response) => {
 			if (response.status == 401) {
