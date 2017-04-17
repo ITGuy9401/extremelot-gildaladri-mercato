@@ -26,7 +26,10 @@ angular.module('mercatino', ['ngCookies', 'ngSanitize', 'ui.router', 'ui.bootstr
 		url: '/admin',
 		templateUrl: 'views/admin.html',
 		controller: 'adminCtrl',
-		controllerAs: 'vm'
+		controllerAs: 'vm',
+		resolve: {
+			loggedIn: checkLoggedin
+		}
 	});
 	$httpProvider.interceptors.push('loginInterceptor');
 }).factory('loginInterceptor', function($q, $location) {
@@ -44,3 +47,15 @@ angular.module('mercatino', ['ngCookies', 'ngSanitize', 'ui.router', 'ui.bootstr
 }).controller('menuCtrl', function($scope) {
 	var vm = this;
 });
+var checkLoggedin = function($q, $timeout, $http, $location, $rootScope) {
+	// Initialize a new promise
+	var deferred = $q.defer(); // Make an AJAX call to check if the user is logged in
+	$http.get('/auth/session').success(function(user) { // Authenticated
+		if (user !== '0') deferred.resolve(); // Not Authenticated
+		else {
+			deferred.reject();
+			$location.url('/login?message=notLoggedIn');
+		}
+	});
+	return deferred.promise;
+};
