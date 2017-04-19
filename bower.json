@@ -24,6 +24,10 @@
     "font-awesome": "fontawesome#^4.7.0",
     "jquery": "^3.2.1",
     "angular-ui-router": "^0.4.2",
-    "angular-sanitize": "^1.6.4"
+    "angular-sanitize": "^1.6.4",
+    "satellizer": "^0.15.5"
+  },
+  "resolutions": {
+    "angular": "^1.6.4"
   }
 }
