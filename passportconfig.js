@@ -1,14 +1,20 @@
-exports.configurePassport = (app, database) => {
-	const expressSession = require('express-session');
-	const passport = require('passport');
-	const LocalStrategy = require('passport-local').Strategy;
-	const Utils = require('./utils.js');
-	const session = require('./passportutils.js');
+// auth.js
+var passport = require("passport");
+var passportJWT = require("passport-jwt");
+var database = require("./database.js");
+var Config = require("./config.js");
+var ExtractJwt = passportJWT.ExtractJwt;
+var Strategy = passportJWT.Strategy;
+var params = {
+	secretOrKey: cfg.jwtSecret,
+	jwtFromRequest: ExtractJwt.fromAuthHeader()
+};
 
-	passport.use(new LocalStrategy({
-		passReqToCallBack: true
-	}, (usernameTxt, password, done) => {
-		var findone = database.mapping.Utente.findOne({
+module.exports = function() {
+	var strategy = new Strategy(params, function(payload, done) {
+		var usernameTxt = payload.username;
+		var password = payload.password;
+		database.mapping.Utente.findOne({
 			where: ["lower(username) like lower(?)", [usernameTxt]]
 		}).then((user) => {
 			if (user && Utils.validPassword(user, password)) {
@@ -22,20 +28,18 @@ exports.configurePassport = (app, database) => {
 			done(null, false);
 			return;
 
+		}, (err) => {
+			return done(new Error("User not found"), null);
 		});
-	}));
 
-	passport.serializeUser(function(user, done) {
-		done(null, user.id);
 	});
-
-	passport.deserializeUser(function(id, done) {
-		database.mapping.Utente.findById(id, function(err, user) {
-			console.log(err, user);
-			done(err, user);
-		});
-	});
-	app.get('/auth/session', Utils.ensureAuthenticated, session.session);
-	app.post('/auth/session', session.login);
-	app.del('/auth/session', session.logout);
-}
+	passport.use(strategy);
+	return {
+		initialize: function() {
+			return passport.initialize();
+		},
+		authenticate: function() {
+			return passport.authenticate("jwt", Config.get('JWT_SECRET'));
+		}
+	};
+};
