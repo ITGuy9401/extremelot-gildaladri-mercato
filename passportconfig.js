@@ -5,12 +5,13 @@ var database = require("./database.js");
 var Config = require("./config.js");
 var ExtractJwt = passportJWT.ExtractJwt;
 var Strategy = passportJWT.Strategy;
-var params = {
-	secretOrKey: Config.get('JWT_SECRET'),
-	jwtFromRequest: ExtractJwt.fromAuthHeader()
-};
 
 module.exports = function() {
+	var params = {
+		secretOrKey: Config.get('JWT_SECRET'),
+		jwtFromRequest: ExtractJwt.fromAuthHeader()
+	};
+
 	var strategy = new Strategy(params, function(payload, done) {
 		var usernameTxt = payload.username;
 		var password = payload.password;
