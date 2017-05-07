@@ -6,7 +6,7 @@ var Config = require("./config.js");
 var ExtractJwt = passportJWT.ExtractJwt;
 var Strategy = passportJWT.Strategy;
 var params = {
-	secretOrKey: cfg.jwtSecret,
+	secretOrKey: Config.get('JWT_SECRET'),
 	jwtFromRequest: ExtractJwt.fromAuthHeader()
 };
 
