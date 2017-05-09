@@ -31,7 +31,7 @@ app.set('env', Config.get('ENV'));
 
 // error handler
 // no stacktraces leaked to user unless in development environment
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
 	res.status(err.status || 500);
 	res.json({
 		'error': {
@@ -50,19 +50,19 @@ app.post('/api/login', passport.authenticate('local'), (req, res) => {
 });
 
 /* Handle Logout */
-app.get('/api/logout', function(req, res) {
+app.get('/api/logout', function (req, res) {
 	req.logout();
 	return res.status(204);
 });
 
-require('./passportconfig.js').configurePassport(app, database);
+require('./passportconfig.js')();
 require('./rest-products.js').main(app, database);
 require('./rest-categories.js').main(app, database);
 
-app.get('*', function(req, res) {
+app.get('*', function (req, res) {
 	res.sendfile('./frontend/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });
 
-app.listen(Config.get('PORT'), function() {
+app.listen(Config.get('PORT'), function () {
 	console.log('GILDALADRI-MARKET LISTENING ON PORT ' + Config.get('PORT'));
 });
