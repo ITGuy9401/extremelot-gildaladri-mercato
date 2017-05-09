@@ -8,7 +8,7 @@ const expressSession = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const Utils = require('./utils.js');
-const Config = require('./config.js').nconf;
+const Config = require('./config.js');
 
 const app = express();
 

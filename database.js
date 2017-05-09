@@ -1,9 +1,9 @@
-(function(require, exports) {
+(function (require, exports) {
 	'use strict';
 
 	const Utils = require('./utils.js');
 	const Sequelize = require('sequelize');
-	const Config = require('./config.js').nconf;
+	const Config = require('./config.js');
 
 	var connection = new Sequelize(Config.get("JAWSDB_URL"), {
 		dialect: Config.get('JAWSDB_DIALECT'),
@@ -163,7 +163,7 @@
 		}
 	}, {
 		setterMethods: {
-			password: function(value) {
+			password: function (value) {
 				this.setDataValue('password', Utils.passwordChipher(value));
 			}
 		}

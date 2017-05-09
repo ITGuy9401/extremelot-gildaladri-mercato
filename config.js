@@ -7,4 +7,4 @@ nconf.argv().env()
 });*/
 
 
-exports.nconf = nconf;
+module.exports = nconf;
